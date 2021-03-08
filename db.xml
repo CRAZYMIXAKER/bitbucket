@@ -1,6 +1,16 @@
 <?xml version="1.0" standalone="yes"?>
 <users>
-	<user name="Mi" email="Mi@gmail.com" login="MIXAKER" password="10993bd6896e56fd0db705da526b82f3"/>
-	<user name="HR" email="HR@gmail.com" login="HRhrHR" password="2070347b2954df65c3e8e7dcc578b04b"/>
-	<user name="ss" email="ss@gmail.com" login="ssssss" password="d0983ec368b73d21f3aa3e94fd63de3f"/>
+	<user name="Aa" email="Mi@gmail.com" login="MIXAKER" password="10993bd6896e56fd0db705da526b82f3" access="1"/>
+	<!-- Password = HR2@hr -->
+	<user name="HR" email="HR@gmail.com" login="HRhrHR" password="2070347b2954df65c3e8e7dcc578b04b" access="1"/>
+	<!-- Password = QQ1!qq -->
+	<user name="QQ" email="QQ@gmail.com" login="QQQQQQ" password="20871920c519c98857c93d0be94612b8" access="0"/>
+	<user name="WW" email="WW@gmail.com" login="WWWWWW" password="8a401acd1cf3e129b4d4e26b9cf0af97" access="0"/>
+	<user name="EE" email="EE@gmail.com" login="EEEEEE" password="8c75d231db036d5f484185667acd6fbd" access="0"/>
+	<user name="AA" email="AA@gmail.com" login="AAAAAA" password="d75a121b822db03378c59eb4fc25bbb3" access="0"/>
+	<user name="YY" email="YY@gmail.com" login="YYYYYY" password="e4f919c892e50a6c45b269828854dc35" access="0"/>
+	<user name="RR" email="RR@gmail.com" login="RRRRRR" password="7d1d063840222bf511bf9c5840923859" access="0"/>
+	<user name="NN" email="NN@gmail.com" login="NNNNNN" password="613f5b7b59d5fd248fd450c2f83251f8" access="0"/>
+	<user name="JJ" email="JJ@gmail.com" login="JJJJJJ" password="ff89b41e846807471a5139c567665100" access="0"/>
+	<user name="GG" email="GG@gmail.com" login="GGGGGG" password="c4a0138192a7ef464f045eb422cb29f2" access="0"/>
 </users>
