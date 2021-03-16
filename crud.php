@@ -15,13 +15,13 @@ class CRUD
 		$this->xml = simplexml_load_file("db.xml");
 	}
 
-	public function createUser()
+	public function createUser($name, $email, $login, $password)
 	{
 		$add = $this->xml->addchild('user');
-		$add->addAttribute('name', $_POST['name']);
-		$add->addAttribute('email', $_POST['email']);
-		$add->addAttribute('login', $_POST['login']);
-		$add->addAttribute('password', md5(md5($_POST['password']) . $this->salt));
+		$add->addAttribute('name', $name);
+		$add->addAttribute('email', $email);
+		$add->addAttribute('login', $login);
+		$add->addAttribute('password', md5(md5($password) . $this->salt));
 		$add->addAttribute('access', 0);
 		$this->xml->saveXML('db.xml');
 
