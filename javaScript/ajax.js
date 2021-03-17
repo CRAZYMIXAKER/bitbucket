@@ -1,29 +1,33 @@
-/* Article FructCode.com */
 $(document).ready(function () {
   $("#btn_sign-in").click(function () {
-    sendAjaxForm("result_form", "sign_in", "signIn.php");
+    sendAjaxForm("sign_in", "signIn.php");
     return false;
   });
   $("#btn_sign-up").click(function () {
-    sendAjaxForm("result_form", "sign_up", "signUp.php");
+    sendAjaxForm("sign_up", "signUp.php");
+    return false;
+  });
+  $("#btn_edit").click(function () {
+    sendAjaxForm("form", "editInformationUsers.php");
     return false;
   });
 });
 
-function sendAjaxForm(result_form, ajax_form, url) {
+function sendAjaxForm(ajax_form, url) {
   $.ajax({
     url: url,
     type: "POST",
-    dataType: "html", //формат данных
-    data: $("." + ajax_form).serialize(), // Сеарилизуем объект
+    dataType: "html",
+    data: $("." + ajax_form).serialize(),
     success: function (response) {
       result = $.parseJSON(response);
       if (result.res == true) {
         location.reload();
       } else {
         $(".err").html(result.error);
-        $(".errLogin").html(result.errorLogin);
+        $(".errName").html(result.errorName);
         $(".errEmail").html(result.errorEmail);
+        $(".errLogin").html(result.errorLogin);
         $(".errPassword").html(result.errorPassword);
       }
     },

@@ -4,9 +4,8 @@ include_once("./crud.php");
 function messagesValidateSignIn(array &$fields): array
 {
 	$errors = [];
-	$loginLen = mb_strlen($fields['login_sign_in'], 'UTF-8');
-	$passwordLen = mb_strlen($fields['password_sign_in'], 'UTF-8');
-
+	$patternLogin = '/^[a-zA-Zа-яА-ЯЁё0-9]{6,32}$/u';
+	$patternPassword = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,32}$$/u';
 	if (checkUser($fields)->length == 0) {
 		$errors['Error'] = 'Неправильный логин или пароль';
 	}
@@ -15,26 +14,23 @@ function messagesValidateSignIn(array &$fields): array
 		$errors['Error'] = 'Поля не должны быть пустыми или заполнены пробелами!';
 	}
 
-	if ($loginLen < 6) {
-		$errors['Login'] = 'Логин не короче 6 символов!';
+	if (!preg_match($patternLogin, $fields['login_sign_in'])) {
+		$errors['Login'] = 'Логин должен, состоять только из букв и цифр, и не быть короче 6 символов и длинее 32';
 	}
 
-	if ($loginLen > 15) {
-		$errors['Login'] = 'Логин не длинее 15 символов!';
-	}
-
-	if ($passwordLen < 5) {
-		$errors['Password'] = 'Пароль не короче 5 символов!';
+	if (!preg_match($patternPassword, $fields['password_sign_in'])) {
+		$errors['Password'] = 'Пароль, обязательно должен содержать цифру, буквы в разных регистрах и спец символ (знаки) и не быть короче 6 символов и длинее 32';
 	}
 
 	return $errors;
-	// $fields['name'] = htmlspecialchars($fields['name']);
-	// $fields['text'] = htmlspecialchars($fields['text']);
 }
 
 function messagesValidateSignUp(array &$fields): array
 {
 	$errors = [];
+	$patternName = '/^[a-zA-Zа-яА-ЯЁё0-9]{2,2}$/u';
+	$patternLogin = '/^[a-zA-Zа-яА-ЯЁё0-9]{6,32}$/u';
+	$patternPassword = '/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,32}$$/u';
 
 	if (empty($fields['name']) || empty($fields['email']) || empty($fields['login']) || empty($fields['password']) || empty($fields['confirm_password'])) {
 		$errors['Error'] = 'Поля не должны быть пустыми или заполнены пробелами!';
@@ -51,21 +47,43 @@ function messagesValidateSignUp(array &$fields): array
 		$errors['Password'] = 'Пароли, должны быть одинаковыми';
 	}
 
-	// if ($loginLen < 6) {
-	// 	$errors['Login'] = 'Логин не короче 6 символов!';
-	// }
+	if (!preg_match($patternName, $fields['name'])) {
+		$errors['Name'] = 'Имя должно, состоять только из букв и цифр, и 2 символов';
+	}
 
-	// if ($loginLen > 15) {
-	// 	$errors['Login'] = 'Логин не длинее 15 символов!';
-	// }
+	if (!filter_var($fields['email'], FILTER_VALIDATE_EMAIL)) {
+		$errors['Email'] = 'Введите валидную почту';
+	}
 
-	// if ($passwordLen < 5) {
-	// 	$errors['Password'] = 'Пароль не короче 5 символов!';
-	// }
+	if (!preg_match($patternLogin, $fields['login'])) {
+		$errors['Login'] = 'Логин должен, состоять только из букв и цифер, и не быть короче 6 символов и длинее 32';
+	}
+
+	if (!preg_match($patternPassword, $fields['password'])) {
+		$errors['Password'] = 'Пароль, обязательно должен содержать цифру, буквы в разных регистрах и спец символ (знаки) и не быть короче 6 символов и длинее 32';
+	}
 
 	return $errors;
-	// $fields['name'] = htmlspecialchars($fields['name']);
-	// $fields['text'] = htmlspecialchars($fields['text']);
+}
+
+function messagesValidateEditUser(array &$fields): array
+{
+	$errors = [];
+	$patternName = '/^[a-zA-Zа-яА-ЯЁё0-9]{2,2}$/u';
+
+	if (empty($fields['name']) || empty($fields['email']) || empty($fields['login'])) {
+		$errors['Error'] = 'Поля не должны быть пустыми или заполнены пробелами!';
+	}
+
+	if (!preg_match($patternName, $fields['name'])) {
+		$errors['Name'] = 'Имя должно, состоять только из букв и цифр, и 2 символов';
+	}
+
+	if (!filter_var($fields['email'], FILTER_VALIDATE_EMAIL)) {
+		$errors['Email'] = 'Введите валидную почту';
+	}
+
+	return $errors;
 }
 
 function checkEmail(array &$fields)

@@ -3,6 +3,10 @@ include_once("./crud.php");
 include_once('messages.php');
 include_once('arr.php');
 
+$workWithXML = new CRUD();
+$xpath = $workWithXML->xpath;
+$salt = $workWithXML->salt;
+
 $responce = [
 	'res' => false,
 	'error' => '',
@@ -33,25 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 echo json_encode($responce);
-
-
-
-// include_once('model/messages.php');
-// include_once('core/arr.php');
-
-// if($_SERVER['REQUEST_METHOD'] === 'POST'){
-// 	$fields = extractFields($_POST, ['name', 'text']);
-// 	$validateErrors = messagesValidate($fields);
-
-// 	if(empty($validateErrors)){
-// 		messagesAdd($fields);
-// 		header('Location: index.php');
-// 		exit();
-// 	}
-// }
-// else{
-// 	$fields = ['name' => '', 'text' => ''];
-// 	$validateErrors = [];
-// }
-
-// include("views/v_add.php");

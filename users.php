@@ -9,7 +9,7 @@ include_once('./crud.php');
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Users</title>
-	<script src="./js/jquery-3.5.1.min.js"></script>
+	<script src="./javaScript/jquery-3.5.1.min.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<link rel="shortcut icon" href="./img/test.png" type="image/png" />
 	<link rel="stylesheet" href="./css/users.css" />
@@ -38,7 +38,8 @@ include_once('./crud.php');
 					?>
 					<tr>
 						<td>
-							<a title="Изменить данные пользователя" href="./edituser.html">
+							<a title="Изменить данные пользователя"
+								href="./editUser.php?updateName=<?php echo $xpath->query('/users/user')[$i]->getAttribute('name') . "&updateEmail=" . $xpath->query('/users/user')[$i]->getAttribute('email') . "&updateLogin=" . $xpath->query('/users/user')[$i]->getAttribute('login') ?>">
 								<img src="./img/Edit.png"></a>
 						</td>
 						<td>
@@ -65,7 +66,7 @@ include_once('./crud.php');
 		<a href="./index.php">На главную</a>
 	</div>
 
-	<script src="/js/users.js"></script>
+	<script src="/javaScript/users.js"></script>
 </body>
 
 </html>

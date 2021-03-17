@@ -3,9 +3,14 @@ include_once("./crud.php");
 include_once('messages.php');
 include_once('arr.php');
 
+$workWithXML = new CRUD();
+$xpath = $workWithXML->xpath;
+$salt = $workWithXML->salt;
+
 $responce = [
 	'res' => false,
 	'error' => '',
+	'errorName' => '',
 	'errorLogin' => '',
 	'errorEmail' => '',
 	'errorPassword' => ''
@@ -22,6 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	} else {
 		if (isset($validateErrors['Error'])) {
 			$responce['error'] = $validateErrors['Error'];
+		}
+		if (isset($validateErrors['Name'])) {
+			$responce['errorName'] = $validateErrors['Name'];
 		}
 		if (isset($validateErrors['Email'])) {
 			$responce['errorEmail'] = $validateErrors['Email'];

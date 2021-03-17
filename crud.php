@@ -52,14 +52,13 @@ class CRUD
 		}
 	}
 
-	public function updateUser($name, $email, $login, $loginMain)
+	public function updateUser($name, $email, $login)
 	{
 		$this->login = $login;
 		$name = $name;
 		$email = $email;
-		$loginMain = $loginMain;
 
-		foreach ($this->xpath->query("/users/user[@login='$loginMain']") as $item) {
+		foreach ($this->xpath->query("/users/user[@login='$this->login']") as $item) {
 			$item->setAttribute('name', "$name");
 			$item->setAttribute('email', "$email");
 			$item->setAttribute('login', "$this->login");

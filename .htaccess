@@ -1,0 +1,9 @@
+RedirectMatch 403 ^/javaScript/.*$
+
+<Files ~ "\.xml$">
+	Order allow,deny
+	Deny from all
+	Satisfy all
+</Files>
+
+Options All -Indexes
